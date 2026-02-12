@@ -30,7 +30,7 @@ batch_definition = data_asset.add_batch_definition_path(
 
 # for easier development
 # expectation is unit test
-expectation = ExpectationsDataA(context=context)
+expectation = ExpectationsDataA(context=context, suite_name="data_a")
 # Validator controls which dataset is tested against which expectation unit test
 validator = ValidationDataA(context=context)
 # checkpointer can run multiple validator and invoke action after validation process
@@ -46,6 +46,7 @@ try:
     checkpointer.register_checkpointer(validation_definitions=[validation], action_list=[action])
     checkpointer = checkpointer.get_checkpointer()
     result = checkpointer.run()
-    print(result)
+    if result.run_results:
+        print(result.run_results)
 except Exception as err:
     print(err)

@@ -1,15 +1,24 @@
 import great_expectations as gx
 
 class ExpectationsDataA():
-    suite_name = "data_a"
     
-    def __init__(self, context) -> None:
+    def __init__(self, context, suite_name) -> None:
         self.context = context
+        self.suite_name = suite_name
 
     def get_expectations(self):
         list_expectation = []
         list_expectation.append(gx.expectations.ExpectColumnValuesToBeBetween(
-            column="age", max_value=6, min_value=1
+            column="age", max_value=6, min_value=3
+        ))
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToNotBeNull(
+                column="age"
+        ))
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToBeOfType(
+                column="gender",
+                type_="str"
         ))
         return list_expectation
     
