@@ -1,6 +1,7 @@
 from setup.data_a.checkpointer import CheckpointerDataA
 from setup.data_a.expectations import ExpectationsDataA
 from setup.data_a.validator import ValidationDataA
+from setup.data_a.action import CustomAction
 
 import great_expectations as gx
 
@@ -34,13 +35,15 @@ expectation = ExpectationsDataA(context=context)
 validator = ValidationDataA(context=context)
 # checkpointer can run multiple validator and invoke action after validation process
 checkpointer = CheckpointerDataA(context=context)
+# simple custom action
+action = CustomAction()
 
 try:
     expectation.register_suite()
     suite = expectation.get_expectation_suite()
     validator.register_validation(suite=suite,batch_definition=batch_definition)
     validation = validator.get_validator()
-    checkpointer.register_checkpointer(validation_definitions=[validation], action_list=[])
+    checkpointer.register_checkpointer(validation_definitions=[validation], action_list=[action])
     checkpointer = checkpointer.get_checkpointer()
     result = checkpointer.run()
     print(result)

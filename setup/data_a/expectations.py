@@ -9,7 +9,7 @@ class ExpectationsDataA():
     def get_expectations(self):
         list_expectation = []
         list_expectation.append(gx.expectations.ExpectColumnValuesToBeBetween(
-            column="umur", max_value=6, min_value=1
+            column="age", max_value=6, min_value=1
         ))
         return list_expectation
     
