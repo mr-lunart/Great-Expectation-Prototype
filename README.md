@@ -8,6 +8,7 @@ The standard workflow follows a structured hierarchy:
 3. Batch Definition: Defines how data is sliced or sampled for testing.
 
 Validation & Automation
+
 Once the data is linked, you can define and automate quality checks:
 - Expectation Suite: A collection of verifiable assertions (rules) about your data.
 - Validation Definition: Links a specific Batch of data to an Expectation Suite.
