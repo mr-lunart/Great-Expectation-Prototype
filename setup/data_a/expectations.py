@@ -8,16 +8,35 @@ class ExpectationsDataA():
 
     def get_expectations(self):
         list_expectation = []
-        list_expectation.append(gx.expectations.ExpectColumnValuesToBeBetween(
-            column="age", max_value=6, min_value=3
-        ))
         list_expectation.append(
             gx.expectations.ExpectColumnValuesToNotBeNull(
-                column="age"
-        ))
+                column="age")
+        )
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToNotBeNull(
+                column="gender")
+        )
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToNotBeNull(
+                column="name")
+        )
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToBeBetween(
+                column="age", max_value=6, min_value=0)
+            )
         list_expectation.append(
             gx.expectations.ExpectColumnValuesToBeOfType(
                 column="gender",
+                type_="str"
+        ))
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToBeOfType(
+                column="age",
+                type_="int"
+        ))
+        list_expectation.append(
+            gx.expectations.ExpectColumnValuesToBeOfType(
+                column="name",
                 type_="str"
         ))
         return list_expectation
